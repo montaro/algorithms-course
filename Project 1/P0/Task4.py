@@ -25,3 +25,25 @@ Print a message:
 The list of numbers should be print out one per line in lexicographic order with no duplicates.
 """
 
+callers = set()
+non_telemarketers = set()
+telemarketers = set()
+
+for call in calls:
+    caller = call[0]
+    callee = call[1]
+    callers.add(caller)
+    non_telemarketers.add(callee)
+
+for text in texts:
+    sender = text[0]
+    receiver = text[1]
+    non_telemarketers.add(sender)
+    non_telemarketers.add(receiver)
+
+telemarketers = callers.difference(non_telemarketers)
+sorted_telemarketers = sorted(telemarketers)
+
+print('These numbers could be telemarketers: ')
+for telemarketer in sorted_telemarketers:
+    print(telemarketer)
