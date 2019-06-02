@@ -73,20 +73,29 @@ assert get_fixed_line_code('(04344)649705') == '04344'
 assert get_mobile_prefix('90351 90193') == '9035'
 
 codes = set()
+number_of_calls = 0
+number_of_calls_to_Bangalore = 0
 
 for call in calls:
     caller = call[0]
     callee = call[1]
     if is_bangalore_number(caller):
+        number_of_calls += 1
         if is_fixed_line(callee):
             codes.add(get_fixed_line_code(callee))
+            if is_bangalore_number(callee):
+                number_of_calls_to_Bangalore += 1
         elif is_mobile_number(callee):
             codes.add(get_mobile_prefix(callee))
         else:
             codes.add('140')
 
 sorted_codes = sorted(codes)
+percentage_of_calls_to_Bangalore = number_of_calls_to_Bangalore / number_of_calls * 100
 
 print('The numbers called by people in Bangalore have codes:')
 for code in sorted_codes:
     print(code)
+
+print('%2.2f percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.' %
+      percentage_of_calls_to_Bangalore)
