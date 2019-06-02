@@ -23,6 +23,6 @@ Print messages:
 "Last record of calls, <incoming number> calls <answering number> at time <time>, lasting <during> seconds"
 """
 
-print("First record of texts, %s texts %s at time %s" % (first_text[0], first_text[1], first_text[2]))
-print("Last record of calls, %s calls %s at time %s, lasting %s seconds" % (last_call[0], last_call[1], last_call[2],
+print('First record of texts, %s texts %s at time %s' % (first_text[0], first_text[1], first_text[2]))
+print('Last record of calls, %s calls %s at time %s, lasting %s seconds' % (last_call[0], last_call[1], last_call[2],
                                                                             calls[-1][3]))

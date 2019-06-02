@@ -43,3 +43,50 @@ Print the answer as a part of a message::
 to other fixed lines in Bangalore."
 The percentage should have 2 decimal digits
 """
+
+
+def is_bangalore_number(number):
+    return number.startswith('(080)')
+
+
+def is_fixed_line(number):
+    return number.startswith('(')
+
+
+def is_mobile_number(number):
+    return number.startswith('7') or number.startswith('8') or number.startswith('9')
+
+
+def get_fixed_line_code(number):
+    i = number.index(')')
+    return number[1:i]
+
+
+def get_mobile_prefix(number):
+    return number[:4]
+
+
+assert is_bangalore_number('(080)33251027')
+assert is_fixed_line('(04344)649705')
+assert is_mobile_number('90351 90193')
+assert get_fixed_line_code('(04344)649705') == '04344'
+assert get_mobile_prefix('90351 90193') == '9035'
+
+codes = set()
+
+for call in calls:
+    caller = call[0]
+    callee = call[1]
+    if is_bangalore_number(caller):
+        if is_fixed_line(callee):
+            codes.add(get_fixed_line_code(callee))
+        elif is_mobile_number(callee):
+            codes.add(get_mobile_prefix(callee))
+        else:
+            codes.add('140')
+
+sorted_codes = sorted(codes)
+
+print('The numbers called by people in Bangalore have codes:')
+for code in sorted_codes:
+    print(code)

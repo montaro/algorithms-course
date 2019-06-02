@@ -11,6 +11,13 @@ with open('calls.csv', 'r') as f:
     reader = csv.reader(f)
     calls = list(reader)
 
+"""
+TASK 1:
+How many different telephone numbers are there in the records? 
+Print a message:
+"There are <count> different telephone numbers in the records."
+"""
+
 telephone_numbers = set()
 
 for text in texts:
@@ -22,11 +29,4 @@ for call in calls:
     telephone_numbers.add(call[0])
     telephone_numbers.add(call[1])
 
-"""
-TASK 1:
-How many different telephone numbers are there in the records? 
-Print a message:
-"There are <count> different telephone numbers in the records."
-"""
-
-print("There are %d different telephone numbers in the records." % len(telephone_numbers))
+print('There are %d different telephone numbers in the records.' % len(telephone_numbers))
