@@ -20,15 +20,37 @@ Print a message:
 September 2016.".
 """
 
+durations = dict()
+
+
+def update_duration(duration_dict, number, dur):
+    if duration_dict.get(number):
+        duration_dict[number] = duration_dict[number] + dur
+    else:
+        duration_dict[number] = dur
+    return duration_dict
+
+
+assert update_duration({'x': 23}, 'x', 23) == {'x': 46}
+assert update_duration({'x': 23}, 'y', 88) == {'x': 23, 'y': 88}
+
 longest_duration = 0
 telephone_number = ""
 
 for call in calls:
     duration = int(call[3])
+
     caller = call[0]
-    if duration > longest_duration:
-        longest_duration = duration
+    durations = update_duration(durations, caller, duration)
+    if durations[caller] > longest_duration:
+        longest_duration = durations[caller]
         telephone_number = caller
+
+    callee = call[1]
+    durations = update_duration(durations, callee, duration)
+    if durations[callee] > longest_duration:
+        longest_duration = durations[callee]
+        telephone_number = callee
 
 print('%s spent the longest time, %d seconds, on the phone during September 2016.' % (telephone_number,
                                                                                       longest_duration))
