@@ -6,6 +6,7 @@ def smallest_positive(in_list):
                 smallest_pos = item
     return smallest_pos
 
+
 print(smallest_positive([4, -6, 7, 2, -4, 10]))
 print(smallest_positive([.2, 5, 3, -.1, 7, 7, 6]))
 print(smallest_positive([-33.04, 48.83, 75.33, 39.82, 76.38, 98.41, 71.27, 67.84, -16.58]))
